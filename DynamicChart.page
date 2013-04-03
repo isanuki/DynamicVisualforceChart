@@ -1,0 +1,15 @@
+<apex:page controller="DynamicChartController"  showHeader="false" sidebar="false" readOnly="true" title="Dynamic Chart Sample">
+<apex:form >
+  <apex:selectList value="{!selectYear}" size="1" style="font-size:18px;">
+    <apex:selectOptions value="{!yearList}"/>
+    <apex:actionSupport event="onchange" action="{!change}" rerender="myChart"/>
+  </apex:selectList>
+</apex:form>
+
+  <apex:chart height="400" width="700" data="{!Data}" resizable="true" id="myChart" theme="Purple">
+    <apex:axis type="Numeric" position="left" fields="amount" title="金額" grid="true" maximum="1000000" />
+    <apex:axis type="Category" position="bottom" fields="month" title="月">
+    </apex:axis>
+    <apex:barSeries orientation="vertical" axis="left" xField="month" yField="amount"/>
+  </apex:chart>
+</apex:page>
